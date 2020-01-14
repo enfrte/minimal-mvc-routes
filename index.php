@@ -6,6 +6,8 @@ require 'helpers.php';
 
 //use App\Database\{QueryBuilder, Connection};
 
+// Handle the route request
+// Returns Controller and Method as string
 function request($router, $config) {
   $requestUri = explode('/', $_SERVER['REQUEST_URI']);
   $requestUri = array_values(array_filter($requestUri)); // remove empty elements (array_filter) and reindex (array_values)
@@ -28,6 +30,7 @@ function request($router, $config) {
 }
 $request = request($router, $config);
 
+// Load the correct controller class based on the route request
 function control($request) {
   $controllerAndMethod = explode('@', $request); // [0] => controller, [1] => method
   $controller = $controllerAndMethod[0];
