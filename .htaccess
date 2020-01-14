@@ -1,0 +1,16 @@
+# MultiViews call pages without file extension
+Options -MultiViews
+RewriteEngine On
+Options -Indexes
+
+# helps pinpoint the index file we call later on with the Rewrite Rule
+# change to match your path
+RewriteBase /minimal-mvc-routes
+
+# d = dir, f = file, l = 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# url is the GET query string used to pass parameters which we identify as our routes (QSA = Query String Append)
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
