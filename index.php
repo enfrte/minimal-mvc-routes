@@ -36,10 +36,10 @@ function control($request) {
   $controller = $controllerAndMethod[0];
   $method = $controllerAndMethod[1];
   $controller = "App\\Controllers\\{$controller}";
-  $controller = new $controller;
-  if (! method_exists($controller, $method)) {
+  $controllerInstance = new $controller;
+  if (! method_exists($controllerInstance, $method)) {
     throw new \Exception("Can't find {$method} in {$controller}");
   }
-  return $controller->$method();
+  return $controllerInstance->$method();
 }
 control($request);
